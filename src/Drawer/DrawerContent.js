@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
@@ -15,16 +15,24 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import DrawerCss from "./Drawer.css";
 
-export default function DrawerContent( ) {
-    
-  const [Client, setClient] = React.useState("");
-  const handleChange = (event) => {
-    setClient(event.target.value);
+export default function DrawerContent() {
+  const [Clientname, setClientName] = useState();
+  const [DOCommence, setDOCommence] = useState(null);
+  const [DoCompletion, setDoCompletion] = useState(null);
+  const [RFQCode, setRFQCode] = useState();
 
-  };
-
-  const [Date1, setDate1] = React.useState(null);
-  const [Date2, setDate2] = React.useState(null);
+  function SubmitData() {
+    console.log(
+      "Clientname-",
+      Clientname,
+      ", Date of Commencement-",
+      DOCommence.$d,
+      ", Date of Completion-",
+      DoCompletion.$d,
+      ", RFQ code-",
+      RFQCode
+    );
+  }
 
   return (
     <Container maxWidth="lg">
@@ -38,17 +46,18 @@ export default function DrawerContent( ) {
               <strong>Client</strong>
             </Typography>
             <Select
-              value={Client}
-              onChange={handleChange}
+              value={Clientname}
+              onChange={(newValue) => {
+                setClientName(newValue.target.value);
+              }}
               displayEmpty
               inputProps={{ "aria-label": "Without label" }}
               size="small"
               placeholder="Client Name"
             >
-              
-              <MenuItem value={10}>A</MenuItem>
-              <MenuItem value={20}>B</MenuItem>
-              <MenuItem value={30}>C</MenuItem>
+              <MenuItem value={"A"}>A</MenuItem>
+              <MenuItem value={"B"}>B</MenuItem>
+              <MenuItem value={"C"}>C</MenuItem>
             </Select>
 
             <Typography fontSize={16} mt={2}>
@@ -56,9 +65,9 @@ export default function DrawerContent( ) {
             </Typography>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
-                value={Date1}
+                value={DOCommence}
                 onChange={(newValue) => {
-                  setDate1(newValue);
+                  setDOCommence(newValue);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
@@ -71,12 +80,12 @@ export default function DrawerContent( ) {
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DatePicker
                 size="small"
-                minDate={Date1}
-                value={Date2}
+                minDate={DOCommence}
+                value={DoCompletion}
                 onChange={(newValue) => {
-                  setDate2(newValue);
+                  setDoCompletion(newValue);
                 }}
-                disabled={Date1 == null ? true : false}
+                disabled={DOCommence == null ? true : false}
                 renderInput={(params) => <TextField {...params} fullWidth />}
               />
             </LocalizationProvider>
@@ -89,6 +98,9 @@ export default function DrawerContent( ) {
               placeholder="RFQ code"
               variant="outlined"
               size="small"
+              onChange={(newValue) => {
+                setRFQCode(newValue.target.value);
+              }}
             />
           </FormControl>
         </Box>
@@ -102,8 +114,21 @@ export default function DrawerContent( ) {
         }}
       >
         <Button
-          variant="contained"
-          sx={{ width: "200px" }}
+          onClick={() => SubmitData()}
+          sx={{
+            width: 170,
+            bgcolor: "#64d4d4",
+            // display: "flex",
+            // flexDirection: 'row-reverse',
+            // justifyContent: 'flex-end',
+            color: "white",
+            fontSize: 14,
+            fontWeight: "bold",
+            ":hover": {
+              bgcolor: "#8edce1",
+              color: "white",
+            },
+          }}
         >
           Done
         </Button>

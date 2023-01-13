@@ -106,7 +106,7 @@ function Row({ row, AllChecked }) {
             size="small"
             onClick={() => setOpen(!open)}
           >
-            {open ? <RemoveRoundedIcon /> : <AddRoundedIcon />}
+            {open ? <RemoveRoundedIcon  style={{ color: "#64d4d4", fontSize:30 }} /> : <AddRoundedIcon style={{ color: "#64d4d4", fontSize:30  }}/>}
           </IconButton>
         </TableCell>
       </TableRow>
@@ -175,10 +175,10 @@ function ActivitysMain({ Activitys, Civil }) {
             }}
           >
             {open1 ? (
-              <ExpandLessRoundedIcon  />
+              <ExpandLessRoundedIcon  style={{ color: "black", fontSize:30 }} />
             ) : (
               <ExpandMoreRoundedIcon
-                
+              style={{ color: "black" , fontSize:30}}
               />
             )}
           </IconButton>

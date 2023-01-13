@@ -8,19 +8,16 @@ import TableMain from "./Main/TableMain";
 import Other from "./Main/Other";
 import SideDrawer from './Header/SideDrawer'
 export default function App() {
+  //How to handle the Nav bars (Overview and Other)
   const [value, setValue] = React.useState("1");
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-
-  //Slide Drawer
-
-  
   return (
     <Container maxWidth="lg">
       <Box sx={{ mt: 5 }}>
+
         <Header />
        
         <Box sx={{ mt: 5 }}>
@@ -29,7 +26,7 @@ export default function App() {
         </Box>
 
         <Box sx={{ mt: 5 }}>{value === "1" ? <TableMain /> : <Other />}</Box>
-        {/* <Button variant="contained">Hello World</Button> */}
+
       </Box>
     </Container>
   );

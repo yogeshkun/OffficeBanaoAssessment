@@ -8,27 +8,22 @@ import SideDrawer from "./SideDrawer";
 export default function Header() {
   return (
     <Container
-    sx={{
-        // flexDirection: 'row',
-
+      sx={{
         display: "flex",
         alignItems: "center",
-        // alignContent: "center",
-        // justifyContent: "center",
-        // alignSelf:'center'
       }}
     >
-      
-        <Box>
-          <ArrowBackIosNewRoundedIcon />
-        </Box>
-        <Box sx={{ mr: 10 }}>
-          <Typography fontSize={18}>
-            <strong>Workorder</strong>
-          </Typography>
-        </Box>
-   
-      <Box sx={{ mx: "80%" }}>
+      <Box>
+        <ArrowBackIosNewRoundedIcon />
+      </Box>
+      <Box sx={{ mx: 6 }}>
+        <Typography fontSize={18}>
+          <strong>Workorder</strong>
+        </Typography>
+      </Box>
+
+      <Box sx={{ mx: "65%" }}>
+        {/* Save button with slide drawer */}
         <SideDrawer />
       </Box>
     </Container>
